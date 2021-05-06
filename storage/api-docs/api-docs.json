@@ -813,6 +813,12 @@
                         "description": "price",
                         "type": "number",
                         "format": "number"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "image",
+                        "type": "string",
+                        "format": "string"
                     }
                 },
                 "type": "object"
@@ -832,6 +838,12 @@
                         "description": "price",
                         "type": "number",
                         "format": "number"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "image",
+                        "type": "string",
+                        "format": "string"
                     }
                 },
                 "type": "object"
