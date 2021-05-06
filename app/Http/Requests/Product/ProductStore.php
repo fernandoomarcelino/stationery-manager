@@ -4,8 +4,38 @@ namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class ProductStore
+ * @package App\Http\Requests\Product
+ *
+ * @OA\Schema(
+ *     title="ProductStoreRequest",
+ *     schema="ProductStoreRequest",
+ *     description="The request to create product"
+ * )
+ */
 class ProductStore extends FormRequest
 {
+    /**
+     * @OA\Property(
+     *   format="string",
+     *   description="name",
+     *   title="name"
+     * )
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @OA\Property(
+     *   format="number",
+     *   description="price",
+     *   title="price"
+     * )
+     * @var double
+     */
+    private $price;
+
     /**
      * Determine if the user is authorized to make this request.
      *

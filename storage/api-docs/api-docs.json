@@ -1,0 +1,879 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API: Clients, Products and Orders",
+        "description": "API: Client, Product and Orders",
+        "contact": {
+            "name": "Fernando Marcelino",
+            "url": "https://github.com/fernandoomarcelino",
+            "email": "ffernandomarcelino@gmail.com"
+        },
+        "license": {
+            "name": "Private",
+            "url": "https://github.com/fernandoomarcelino"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/",
+            "description": "L5 Swagger OpenApi dynamic host server"
+        }
+    ],
+    "paths": {
+        "/api/client": {
+            "get": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Show all",
+                "description": "Show all",
+                "operationId": "ClientIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Create",
+                "description": "Create",
+                "operationId": "ClientStore",
+                "requestBody": {
+                    "request": "ClientStoreRequest",
+                    "description": "ClientStoreRequest",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing parameters (validation)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/client/{id}": {
+            "get": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Show detail",
+                "description": "Show detail",
+                "operationId": "ClientShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Update",
+                "description": "Update",
+                "operationId": "ClientUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "request": "ClientUpdateRequest",
+                    "description": "ClientUpdateRequest",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing parameters (validation)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Remove",
+                "description": "Remove",
+                "operationId": "ClientDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Show all",
+                "description": "Show all",
+                "operationId": "OrderIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Create",
+                "description": "Create",
+                "operationId": "OrderStore",
+                "requestBody": {
+                    "request": "OrderStoreRequest",
+                    "description": "OrderStoreRequest",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing parameters (validation)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order/{id}": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Show detail",
+                "description": "Show detail",
+                "operationId": "OrderShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Update",
+                "description": "Update",
+                "operationId": "OrderUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "request": "OrderUpdateRequest",
+                    "description": "OrderUpdateRequest",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing parameters (validation)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Remove",
+                "description": "Remove",
+                "operationId": "OrderDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Show all",
+                "description": "Show all",
+                "operationId": "ProductIndex",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Create",
+                "description": "Create",
+                "operationId": "ProductStore",
+                "requestBody": {
+                    "request": "ProductStoreRequest",
+                    "description": "ProductStoreRequest",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing parameters (validation)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product/{id}": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Show detail",
+                "description": "Show detail",
+                "operationId": "ProductShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Update",
+                "description": "Update",
+                "operationId": "ProductUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "request": "ProductUpdateRequest",
+                    "description": "ProductUpdateRequest",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing parameters (validation)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Remove",
+                "description": "Remove",
+                "operationId": "ProductDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ClientStoreRequest": {
+                "title": "ClientStoreRequest",
+                "description": "The request to create Client",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "email",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "date_birth": {
+                        "title": "date_birth",
+                        "description": "date_birth",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "address",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "complement": {
+                        "title": "complement",
+                        "description": "complement",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "neighborhood": {
+                        "title": "neighborhood",
+                        "description": "neighborhood",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "zipcode": {
+                        "title": "zipcode",
+                        "description": "zipcode",
+                        "type": "string",
+                        "format": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ClientUpdateRequest": {
+                "title": "ClientUpdateRequest",
+                "description": "The request to update Client"
+            },
+            "OrderStoreRequest": {
+                "title": "OrderStoreRequest",
+                "description": "The request to create order",
+                "properties": {
+                    "client_id": {
+                        "title": "client_id",
+                        "description": "client_id",
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    "products": {
+                        "title": "products",
+                        "description": "products",
+                        "type": "array",
+                        "format": "array",
+                        "items": {
+                            "type": "integer",
+                            "items": {}
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "OrderUpdateRequest": {
+                "title": "OrderUpdateRequest",
+                "description": "The request to update order",
+                "properties": {
+                    "client_id": {
+                        "title": "client_id",
+                        "description": "client_id",
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    "products": {
+                        "title": "products",
+                        "description": "products",
+                        "type": "array",
+                        "format": "array",
+                        "items": {
+                            "type": "integer",
+                            "items": {}
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ProductStoreRequest": {
+                "title": "ProductStoreRequest",
+                "description": "The request to create product",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price",
+                        "type": "number",
+                        "format": "number"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductUpdateRequest": {
+                "title": "ProductUpdateRequest",
+                "description": "The request to update product",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price",
+                        "type": "number",
+                        "format": "number"
+                    }
+                },
+                "type": "object"
+            },
+            "ValidationErrorResponse": {
+                "title": "Validation Error response",
+                "description": "The validation error response",
+                "properties": {
+                    "message": {
+                        "title": "message",
+                        "description": "error message",
+                        "format": "string"
+                    },
+                    "errors": {
+                        "title": "errors",
+                        "description": "validation errors in the format: Property name: validation error",
+                        "format": "array",
+                        "items": {
+                            "properties": {
+                                "field": {
+                                    "title": "field",
+                                    "format": "string"
+                                },
+                                "value": {
+                                    "title": "value",
+                                    "format": "string"
+                                }
+                            },
+                            "type": "object",
+                            "format": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    },
+    "security": [
+        []
+    ]
+}

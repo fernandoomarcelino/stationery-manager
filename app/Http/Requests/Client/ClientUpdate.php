@@ -4,6 +4,16 @@ namespace App\Http\Requests\Client;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class ClientUpdate
+ * @package App\Http\Requests\Client
+ *
+ * @OA\Schema(
+ *     title="ClientUpdateRequest",
+ *     schema="ClientUpdateRequest",
+ *     description="The request to update Client"
+ * )
+ */
 class ClientUpdate extends FormRequest
 {
     /**

@@ -18,6 +18,20 @@ class ProductController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @OA\Get(
+     *      path="/api/product",
+     *      operationId="ProductIndex",
+     *      tags={"Product"},
+     *      summary="Show all",
+     *      description="Show all",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(response=400, description="Bad request", @OA\JsonContent()),
+     *      @OA\Response(response=401, description="Unauthorized", @OA\JsonContent()),
+     *      @OA\Response(response=404, description="Resource Not Found", @OA\JsonContent())
+     * )
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,6 +43,26 @@ class ProductController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @OA\Post(
+     *      path="/api/product",
+     *      operationId="ProductStore",
+     *      tags={"Product"},
+     *      summary="Create",
+     *      description="Create",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent()
+     *       ),
+     *       @OA\Response(response=400, description="Bad Request", @OA\JsonContent()),
+     *       @OA\Response(response=422, description="Missing parameters (validation)", @OA\JsonContent(ref="#/components/schemas/ValidationErrorResponse")),
+     *       @OA\RequestBody(
+     *         request="ProductStoreRequest",
+     *         description="ProductStoreRequest",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/ProductStoreRequest")
+     *       ),
+     *     )
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -41,7 +75,26 @@ class ProductController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * @OA\Get(
+     *      path="/api/product/{id}",
+     *      operationId="ProductShow",
+     *      tags={"Product"},
+     *      summary="Show detail",
+     *      description="Show detail",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(response=400, description="Bad request", @OA\JsonContent()),
+     *      @OA\Response(response=404, description="Resource Not Found", @OA\JsonContent())
+     * )
      * @param int $id
      * @return \Illuminate\Http\Response
      */
@@ -53,6 +106,32 @@ class ProductController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @OA\Put(
+     *      path="/api/product/{id}",
+     *      operationId="ProductUpdate",
+     *      tags={"Product"},
+     *      summary="Update",
+     *      description="Update",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *       @OA\Response(response=400, description="Bad Request", @OA\JsonContent()),
+     *       @OA\Response(response=422, description="Missing parameters (validation)", @OA\JsonContent(ref="#/components/schemas/ValidationErrorResponse")),
+     *       @OA\RequestBody(
+     *         request="ProductUpdateRequest",
+     *         description="ProductUpdateRequest",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/ProductUpdateRequest")
+     *       ),
+     *     )
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -67,7 +146,26 @@ class ProductController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @OA\Delete(
+     *      path="/api/product/{id}",
+     *      operationId="ProductDelete",
+     *      tags={"Product"},
+     *      summary="Remove",
+     *      description="Remove",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(response=400, description="Bad request", @OA\JsonContent()),
+     *      @OA\Response(response=404, description="Resource Not Found", @OA\JsonContent())
+     * )
      * @param int $id
      * @return \Illuminate\Http\Response
      */
