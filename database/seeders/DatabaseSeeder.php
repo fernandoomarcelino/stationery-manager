@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory()->count(10)->create();
+
+        $this->call(UploadTypeSeeder::class);
+        $this->call(ProductSeeder::class);
+
+        Client::factory()->count(100)->create();
         // \App\Models\User::factory(10)->create();
     }
 }

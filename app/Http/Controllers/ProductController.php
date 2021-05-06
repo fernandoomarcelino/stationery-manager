@@ -70,6 +70,7 @@ class ProductController extends Controller
     public function store(ProductStore $request, Product $resource)
     {
         $resource = $resource->create($request->all());
+        $this->productService->updateProductPhoto($resource, $request->image);
         return $this->show($resource->id);
     }
 

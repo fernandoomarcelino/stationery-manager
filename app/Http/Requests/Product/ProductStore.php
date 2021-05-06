@@ -37,6 +37,16 @@ class ProductStore extends FormRequest
     private $price;
 
     /**
+     * @OA\Property(
+     *   format="string",
+     *   description="image",
+     *   title="image"
+     * )
+     * @var string
+     */
+    private $image;
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -56,6 +66,7 @@ class ProductStore extends FormRequest
         return [
             'name' => 'required|string|max:256',
             'price' => 'required|numeric|min:0',
+            'image' => 'required|string|nullable',
         ];
     }
 }
