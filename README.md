@@ -49,7 +49,7 @@ First step, download the project
 git clone https://github.com/fernandoomarcelino/stationery-manager.git
 
 # Access the directory
-cd laravel-com-vue-exemplo
+cd stationery-manager
 ```
 
 ## configuration - Backend
