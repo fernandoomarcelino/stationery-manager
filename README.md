@@ -42,7 +42,7 @@ As tabelas devem conter as seguintes informações:
 
 ## Installation
 
-#### Baixar o projeto
+#### Download the project
 First step, download the project
 ``` bash
 # Download
@@ -76,7 +76,8 @@ php artisan storage:link
 # turn on the the server - it should go up on port 8000
 php artisan serve
 
-# you can configure vhost in apache/nginx or go up to another port, but don't forget to update the variable APP_URL in the .env file.
+# you can configure vhost in apache/nginx or go up to another port
+# Don't forget to update the variable APP_URL in the .env file.
 
 # go to the documentation page to test the api
 127.0.0.1:8000/api/documentation
