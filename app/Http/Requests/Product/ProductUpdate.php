@@ -4,8 +4,38 @@ namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class ProductUpdate
+ * @package App\Http\Requests\Product
+ *
+ * @OA\Schema(
+ *     title="ProductUpdateRequest",
+ *     schema="ProductUpdateRequest",
+ *     description="The request to update product"
+ * )
+ */
 class ProductUpdate extends FormRequest
 {
+    /**
+     * @OA\Property(
+     *   format="string",
+     *   description="name",
+     *   title="name"
+     * )
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @OA\Property(
+     *   format="number",
+     *   description="price",
+     *   title="price"
+     * )
+     * @var double
+     */
+    private $price;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +54,6 @@ class ProductUpdate extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:products,id',
             'name' => 'required|string|max:256',
             'price' => 'required|numeric|min:0',
         ];

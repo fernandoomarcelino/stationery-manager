@@ -3,11 +3,43 @@
 namespace App\Http\Requests\Order;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\Rule;
 
+/**
+ * Class OrderStore
+ * @package App\Http\Requests\Order
+ *
+ * @OA\Schema(
+ *     title="OrderStoreRequest",
+ *     schema="OrderStoreRequest",
+ *     description="The request to create order"
+ * )
+ */
 class OrderStore extends FormRequest
 {
+    /**
+     * @OA\Property(
+     *   format="integer",
+     *   description="client_id",
+     *   title="client_id"
+     * )
+     * @var integer
+     */
+    private $client_id;
+
+    /**
+     * @OA\Property(
+     *   format="array",
+     *     @OA\Items(
+     *          type="integer",
+     *          @OA\Items()
+     *      ),
+     *   description="products",
+     *   title="products"
+     * )
+     * @var array
+     */
+    private $products;
+
     /**
      * Determine if the user is authorized to make this request.
      *
