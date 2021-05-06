@@ -1,62 +1,89 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h3 align="center">
+  Exercise
+</h3>
+
+<p align="center">Stationery system: Customers, products, orders</p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="#Objective">Objective</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#Installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Objective
+the goal is to solve a challenge. Below original specification (pt-BR) 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### Sobre o projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+A API Restful deve contemplar os módulos **Cliente**, **Produtos** e **Pedido**, sendo que cada um devera conter  endpoints **CRUDL**.
 
-## Learning Laravel
+As tabelas devem conter as seguintes informações:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* **Cliente** `nome, email, telefone, data de nascimento, endereço, complemento, bairro, cep, data de cadastro`;
+* **Produto** `nome, preço, foto`;
+* **Pedido** `código do cliente, código(s) do produto, data da criação`;
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Requisitos
 
-## Laravel Sponsors
+* Não devem existir dois clientes com o mesmo email.
+* O produto deve possuir foto.
+* Os dados devem ser validados.
+* O sistema deve conter uma série de tipos de produtos já definidos.
+* O pedido deve contemplar N produtos.
+* O cliente pode contemplar N pedidos.
+* Os registros devem conter a funcionalidade de soft deleting.
+* Padronização PSR
+* Nomenclatura de classes, métodos e rotas no padrão americano.
+* Não é necessário utilizar padrão de autenticação (ex. OAuth) para consumir a API
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Fonte
+- [test](https://github.com/leonardorutz/teste/blob/main/README.md)
 
-### Premium Partners
+## Installation
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+#### Baixar o projeto
+First step, download the project
+``` bash
+# Download
+git clone https://github.com/fernandoomarcelino/stationery-manager.git
 
-## Contributing
+# Access the directory
+cd laravel-com-vue-exemplo
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## configuration - Backend
 
-## Code of Conduct
+``` bash
+# Install dependencies
+composer install
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Configure variables
+cp .env.example .env
 
-## Security Vulnerabilities
+# now put your database credentials inside the .env file
+php artisan key:generate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# create migrations (upload tables and initial data)
+php artisan migrate --seed
 
-## License
+# create symbolic link from uloadas folder (storage/app/public to public/storage/)
+php artisan storage:link
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## how to use
+``` bash
+# turn on the the server - it should go up on port 8000
+php artisan serve
+
+# you can configure vhost in apache/nginx or go up to another port, but don't forget to update the variable APP_URL in the .env file.
+
+# go to the documentation page to test the api
+127.0.0.1:8000/api/documentation
+
+```
+you can now create, update, list one, list all or update features: customer, product and order.
+
+All data is validated.
+
+File upload was only configured for base64, so it should start with "data: image / png; base64,"
